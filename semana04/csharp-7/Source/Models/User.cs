@@ -8,33 +8,22 @@ namespace Codenation.Challenge.Models
     [Table("user")]
     public class User
     {
-        [Key]
-        [Required]
-        [Column("id")]
+        [Key, Column("id")]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        [Column("full_name")]
+        [Required, MaxLength(100), Column("full_name")]
         public string FullName { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        [Column("email")]
+        [Required, MaxLength(100), Column("email")]
         public string Email { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        [Column("nickname")]
+        [Required, MaxLength(50), Column("nickname")]
         public string Nickname { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        [Column("password")]
+        [Required, MaxLength(255), Column("password")]
         public string Password { get; set; }
 
-        [Required]
-        [Column("created_at")]
+        [Required, Column("created_at")]
         public DateTime CreatedAt { get; set; }
 
         public ICollection<Candidate> Candidates { get; set; }
