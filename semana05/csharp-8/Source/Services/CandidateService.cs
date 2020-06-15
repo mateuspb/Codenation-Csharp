@@ -7,7 +7,7 @@ namespace Codenation.Challenge.Services
 {
     public class CandidateService : ICandidateService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public CandidateService(CodenationContext context)
         {
             data = context;

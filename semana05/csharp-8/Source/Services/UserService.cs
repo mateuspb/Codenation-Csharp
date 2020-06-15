@@ -6,7 +6,7 @@ namespace Codenation.Challenge.Services
 {
     public class UserService : IUserService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public UserService(CodenationContext context)
         {
             data = context;
@@ -29,7 +29,7 @@ namespace Codenation.Challenge.Services
 
         public User Save(User user)
         {
-            if (user.Id == 0)
+            if (user.Id.Equals(0))
             {
                 data.Add(user);
             }

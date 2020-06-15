@@ -7,7 +7,7 @@ namespace Codenation.Challenge.Services
 {
     public class SubmissionService : ISubmissionService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public SubmissionService(CodenationContext context)
         {
             data = context;
