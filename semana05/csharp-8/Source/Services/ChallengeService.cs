@@ -6,7 +6,7 @@ namespace Codenation.Challenge.Services
 {
     public class ChallengeService : IChallengeService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public ChallengeService(CodenationContext context)
         {
             data = context;
@@ -19,7 +19,7 @@ namespace Codenation.Challenge.Services
 
         public Models.Challenge Save(Models.Challenge challenge)
         {
-            if (challenge.Id == 0)
+            if (challenge.Id.Equals(0))
             {
                 data.Add(challenge);
             }

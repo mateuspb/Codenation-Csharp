@@ -6,7 +6,7 @@ namespace Codenation.Challenge.Services
 {
     public class AccelerationService : IAccelerationService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public AccelerationService(CodenationContext context)
         {
             data = context;
@@ -24,7 +24,7 @@ namespace Codenation.Challenge.Services
 
         public Acceleration Save(Acceleration acceleration)
         {
-            if (acceleration.Id == 0)
+            if (acceleration.Id.Equals(0))
             {
                 data.Add(acceleration);
             }

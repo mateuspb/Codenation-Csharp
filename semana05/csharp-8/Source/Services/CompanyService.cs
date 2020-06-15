@@ -6,7 +6,7 @@ namespace Codenation.Challenge.Services
 {
     public class CompanyService : ICompanyService
     {
-        CodenationContext data;
+        private readonly CodenationContext data;
         public CompanyService(CodenationContext context)
         {
             data = context;
@@ -29,7 +29,7 @@ namespace Codenation.Challenge.Services
 
         public Company Save(Company company)
         {
-            if (company.Id == 0)
+            if (company.Id.Equals(0))
             {
                 data.Add(company);
             }
