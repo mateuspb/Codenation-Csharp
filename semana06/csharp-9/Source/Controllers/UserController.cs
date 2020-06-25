@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Codenation.Challenge.DTOs;
 using Codenation.Challenge.Models;
@@ -13,29 +11,46 @@ namespace Codenation.Challenge.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _service;
+        private readonly IMapper _mapper;
+
         public UserController(IUserService service, IMapper mapper)
         {
+            _service = service;
+            _mapper = mapper;
         }
 
         // GET api/user
         [HttpGet]
-        public ActionResult<IEnumerable<UserDTO>> GetAll(string accelerationName = null, int? companyId = null)
+        public ActionResult<List<UserDTO>> GetAll(string accelerationName = null, int? companyId = null)
         {            
-            throw new NotImplementedException();
+            if ((accelerationName == null && companyId == null) || (accelerationName != null && companyId != null))
+            {
+                return NoContent();
+            }
+
+            if(accelerationName != null)
+            {
+                return Ok(_mapper.Map<List<UserDTO>>(_service.FindByAccelerationName(accelerationName)));
+            }
+            else
+            {
+                return Ok(_mapper.Map<List<UserDTO>>(_service.FindByCompanyId(companyId.GetValueOrDefault())));
+            }
         }
 
         // GET api/user/{id}
         [HttpGet("{id}")]
         public ActionResult<UserDTO> Get(int id)
         {            
-            throw new NotImplementedException();
+            return Ok(_mapper.Map<UserDTO>(_service.FindById(id)));
         }
 
         // POST api/user
         [HttpPost]
         public ActionResult<UserDTO> Post([FromBody] UserDTO value)
         {
-            throw new NotImplementedException();
+            return Ok(_mapper.Map<UserDTO>(_service.Save(_mapper.Map<User>(value))));
         }   
      
     }
