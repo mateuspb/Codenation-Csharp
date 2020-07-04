@@ -20,7 +20,7 @@ namespace Codenation.Challenge.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Codenation;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer(@"Server=SAMSUNG;Database=Codenation;Trusted_Connection=True"); //(localdb)\mssqllocaldb
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
